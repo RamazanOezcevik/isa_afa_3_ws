@@ -1,0 +1,27 @@
+name: isa_afa_3
+services:
+  ws:
+    container_name: isa_afa_3_ws
+    cap_add:
+      - NET_ADMIN
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - DISPLAY=:0.0
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=/tmp/.docker.xauth
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    volumes:
+      - ..:/home/isa_afa_3_ws
+      - ../configuration:/home/isa_afa_3_ws/configuration
+      - ../src:/home/isa_afa_3_ws/src
+      - ../scripts:/home/isa_afa_3_ws/scripts
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+    network_mode: host
+    tty: true
+    entrypoint: bash /home/isa_afa_3_ws/configuration/docker-entrypoint.sh
+    stdin_open: true

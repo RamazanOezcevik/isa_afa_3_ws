@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot>
+  <!-- Materials -->
+  <gazebo reference="chassis">
+    <visual>
+      <material>
+        <!-- Blue -->
+        <ambient>0.0 0.0 1.0 1.0</ambient>
+        <diffuse>0.0 0.0 1.0 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+  </gazebo>
+  <gazebo reference="rear_left_wheel">
+    <visual>
+      <material>
+        <!-- Black -->
+        <ambient>0.1 0.1 0.1 1.0</ambient>
+        <diffuse>0.1 0.1 0.1 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+    <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10.0</mu>
+            <mu2>10.0</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+  <gazebo reference="rear_right_wheel">
+    <visual>
+      <material>
+        <!-- Black -->
+        <ambient>0.1 0.1 0.1 1.0</ambient>
+        <diffuse>0.1 0.1 0.1 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+    <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10.0</mu>
+            <mu2>10.0</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+  <gazebo reference="front_left_wheel">
+    <visual>
+      <material>
+        <!-- Black -->
+        <ambient>0.1 0.1 0.1 1.0</ambient>
+        <diffuse>0.1 0.1 0.1 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+    <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10.0</mu>
+            <mu2>10.0</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+  <gazebo reference="front_right_wheel">
+    <visual>
+      <material>
+        <!-- Black -->
+        <ambient>0.1 0.1 0.1 1.0</ambient>
+        <diffuse>0.1 0.1 0.1 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+    <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10.0</mu>
+            <mu2>10.0</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+  <gazebo reference="lidar_link">
+    <visual>
+      <material>
+        <!-- Red -->
+        <ambient>1.0 0.0 0.0 1.0</ambient>
+        <diffuse>1.0 0.0 0.0 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+  </gazebo>
+  <gazebo reference="lidar_link">
+    <visual>
+      <material>
+        <!-- Red -->
+        <ambient>1.0 0.0 0.0 1.0</ambient>
+        <diffuse>1.0 0.0 0.0 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+  </gazebo>
+  <gazebo reference="sonar_link">
+    <visual>
+      <material>
+        <!-- Red -->
+        <ambient>1.0 0.0 0.0 1.0</ambient>
+        <diffuse>1.0 0.0 0.0 1.0</diffuse>
+        <specular>0.0 0.0 0.0 1.0</specular>
+        <emissive>0.0 0.0 0.0 1.0</emissive>
+      </material>
+    </visual>
+  </gazebo>
+
+  <!-- Preserve fixed joints -->
+	<!-- Do not preserve chassis_joint-->
+  <gazebo reference="lidar_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+  <gazebo reference="imu_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+  <gazebo reference="camera_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+  <gazebo reference="sonar_joint">
+    <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+  </gazebo>
+
+  <!-- Lidar Sensor Plugin -->
+  <gazebo reference="lidar_link">
+    <sensor name="lidar" type="gpu_lidar">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <topic>/scan</topic>
+      <gz_frame_id>lidar_link</gz_frame_id>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1.00</resolution>
+            <min_angle>0.00</min_angle>
+            <max_angle>6.28</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>30.0</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.00</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+
+  <!-- IMU Sensor Plugin -->
+  <gazebo>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"></plugin>
+  </gazebo>
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>/imu</topic>
+      <gz_frame_id>imu_link</gz_frame_id>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0000075</bias_mean>
+              <bias_stddev>0.0000008</bias_stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0000075</bias_mean>
+              <bias_stddev>0.0000008</bias_stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0000075</bias_mean>
+              <bias_stddev>0.0000008</bias_stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+
+  <!-- RGBD Camera Plugin-->
+  <gazebo reference="camera_link">
+    <sensor name="depth_camera" type="rgbd_camera">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>5.0</update_rate>
+      <topic>/depth_camera</topic>
+      <gz_frame_id>camera_link</gz_frame_id>
+      <camera>
+        <horizontal_fov>1.047198</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <!-- Sonar Plugin-->
+  <gazebo reference="sonar_link">
+    <sensor name="sonar_sensor" type="sonar">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>5.0</update_rate>
+      <topic>/sonar</topic>
+      <gz_frame_id>sonar_link</gz_frame_id>
+      <sonar>
+        <geometry>cone</geometry>
+        <min>0.2</min>
+        <max>30</max>
+        <radius>15</radius>
+      </sonar>
+    </sensor>
+  </gazebo>
+</robot>

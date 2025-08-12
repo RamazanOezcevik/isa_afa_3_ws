@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="streets_with_walls">
+    <static>true</static>
+    <link name="link">
+      <pose>0 0 0 1.5708 0 0</pose> <!-- Rotation um Z-Achse -->
+      <visual name="mesh_visual">
+        <geometry>
+          <mesh>
+            <uri>model://streets_with_walls/meshes/streets_with_walls.obj</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="mesh_collision">
+        <geometry>
+          <mesh>
+            <uri>model://streets_with_walls/meshes/streets_with_walls.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
