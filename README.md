@@ -13,7 +13,7 @@ Es kann die Karte mit der slam_toolbox aufgezeichnet werden. Das Fahrzeug fährt
 + Docker engine in WSL2 installieren
 + (Optional) Falls eine NVIDIA Grafikkarte vorhanden: Nvidia Treiber in WSL2 installieren und Nvidia Container-Toolbox in WSL2 installieren
 
-** Aufsetzen des Dockers und automatische/vollständige Installation der Simulationsumgebung:**
+**Aufsetzen des Dockers und automatische/vollständige Installation der Simulationsumgebung:**
 + Quellcode von GitHub aufrufen oder Abgegbenen Quellcode in Ubuntu (von der WSL2) kopieren
 
 im workspace Verzeichnis den Installationsbefehl aufrufen: 
